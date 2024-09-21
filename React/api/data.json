@@ -1,0 +1,120 @@
+{
+  "account": [
+    {
+      "id": "1",
+      "fullname": "Admin 1",
+      "email": "admin@gmail.com",
+      "password": "123",
+      "token": "123ABC4564FHFGHF789789"
+    }
+  ],
+  "product": [
+    {
+      "id": "9087",
+      "pname": "Cloud",
+      "price": "23445",
+      "details": "Nice Product",
+      "offer": "2123",
+      "quantity": "2",
+      "photo": [
+        "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726461227/fronx-exterior-removebg-preview_ybgiat.png",
+        "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726461228/images2-removebg-preview_frpakq.png",
+        "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726461228/images-removebg-preview_nlalxi.png"
+      ]
+    },
+    {
+      "id": "8bbd",
+      "pname": "Truck",
+      "price": "2453453",
+      "details": "Heavy load truck",
+      "offer": "23424",
+      "quantity": "1",
+      "photo": [
+        "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726463333/truck_qufhih.jpg",
+        "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726463334/zeep_uupytr.jpg",
+        "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726463334/bus_rznl0o.jpg"
+      ]
+    }
+  ],
+  "cart": [
+    {
+      "id": 6,
+      "name": "Suzuki Fronx",
+      "description": "Enjoy a beautiful journey",
+      "title": "5 seater Suzuki Fronx",
+      "extra_info": "",
+      "metadata": "",
+      "qty": 1,
+      "price": "554999.00",
+      "discount": "12000.00",
+      "created_at": "2024-09-20T23:17:29.000Z",
+      "updated_at": "2024-09-20T23:17:29.000Z",
+      "pic1": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894044/fronx-exterior-removebg-preview_hyrcyh.png",
+      "pic2": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894045/images_aeijgj.png",
+      "pic3": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894047/i20_Modelpc_rjnhzz.png",
+      "pic4": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894048/images2_tjwo7l.png"
+    },
+    {
+      "id": 6,
+      "name": "Suzuki Fronx",
+      "description": "Enjoy a beautiful journey",
+      "title": "5 seater Suzuki Fronx",
+      "extra_info": "",
+      "metadata": "",
+      "qty": 1,
+      "price": "554999.00",
+      "discount": "12000.00",
+      "created_at": "2024-09-20T23:17:29.000Z",
+      "updated_at": "2024-09-20T23:17:29.000Z",
+      "pic1": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894044/fronx-exterior-removebg-preview_hyrcyh.png",
+      "pic2": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894045/images_aeijgj.png",
+      "pic3": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894047/i20_Modelpc_rjnhzz.png",
+      "pic4": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894048/images2_tjwo7l.png"
+    },
+    {
+      "id": 6,
+      "name": "Suzuki Fronx",
+      "description": "Enjoy a beautiful journey",
+      "title": "5 seater Suzuki Fronx",
+      "extra_info": "",
+      "metadata": "",
+      "qty": 1,
+      "price": "554999.00",
+      "discount": "12000.00",
+      "created_at": "2024-09-20T23:17:29.000Z",
+      "updated_at": "2024-09-20T23:17:29.000Z",
+      "pic1": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894044/fronx-exterior-removebg-preview_hyrcyh.png",
+      "pic2": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894045/images_aeijgj.png",
+      "pic3": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894047/i20_Modelpc_rjnhzz.png",
+      "pic4": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894048/images2_tjwo7l.png"
+    }
+  ],
+  "order": [
+    {
+      "id": "2816",
+      "fullname": "Sarif Khan",
+      "email": "sarifkhanngn02@gmail.com",
+      "mobile": "9365919522",
+      "address": "Nagaon panikhati",
+      "itemlist": [
+        {
+          "id": 6,
+          "name": "Suzuki Fronx",
+          "description": "Enjoy a beautiful journey",
+          "title": "5 seater Suzuki Fronx",
+          "extra_info": "",
+          "metadata": "",
+          "qty": 1,
+          "price": "554999.00",
+          "discount": "12000.00",
+          "created_at": "2024-09-20T23:17:29.000Z",
+          "updated_at": "2024-09-20T23:17:29.000Z",
+          "pic1": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894044/fronx-exterior-removebg-preview_hyrcyh.png",
+          "pic2": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894045/images_aeijgj.png",
+          "pic3": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894047/i20_Modelpc_rjnhzz.png",
+          "pic4": "https://res.cloudinary.com/dvwetmdiv/image/upload/v1726894048/images2_tjwo7l.png"
+        }
+      ]
+    }
+  ]
+}

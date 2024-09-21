@@ -1,0 +1,2 @@
+To run the json Server
+json-server --watch data.json --port 1234
