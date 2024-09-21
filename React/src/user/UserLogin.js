@@ -9,7 +9,7 @@ const UserLogin = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://tiffinbreak-main-2.onrender.com/user/login/', {
+            const response = await fetch('https://alevelproject.onrender.com/user/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -21,8 +21,6 @@ const UserLogin = () => {
             if (response.ok) {
                 sessionStorage.setItem('userId', data.userId); // Store userId in session storage
                 sessionStorage.setItem('token', data.token); // Store token in session storage
-                console.log('Session ID:', sessionStorage.getItem('userId')); // Log the session ID
-                console.log('Token:', sessionStorage.getItem('token')); // Log the token
                 alert('Login successful!');
                 navigate('/'); // Redirect to home after successful login
             } else {

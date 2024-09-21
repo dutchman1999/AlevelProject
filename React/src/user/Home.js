@@ -18,7 +18,7 @@ const MyHome = () => {
     }, []);
 
     const getProduct = () => {
-        fetch("https://tiffinbreak-main-2.onrender.com/api/items")
+        fetch("https://alevelproject.onrender.com/api/items")
             .then(response => response.json())
             .then(productArray => {
                 updateProduct(productArray.reverse());
@@ -41,7 +41,7 @@ const MyHome = () => {
                 userId  // Add userId to the product data
             };
 
-            fetch("https://tiffinbreak-main-2.onrender.com/api/cart", {
+            fetch("https://alevelproject.onrender.com/api/cart", {
                 headers: { 
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`  // Pass token in the headers for authorization

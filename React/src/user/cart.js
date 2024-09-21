@@ -4,13 +4,22 @@ import swal from "sweetalert";
 const MyCart = () => {
     const [allProduct, setAllProduct] = useState([]);
     const usersId = sessionStorage.getItem("userId");
-    // Fetch all cart items
+
+    // Fetch the cart item(s)
     const getProduct = () => {
-        let url = `https://tiffinbreak-main-2.onrender.com/api/cart?userId=${usersId}`;
+        let url = `https://alevelproject.onrender.com/api/cart/${usersId}`;
         fetch(url)
             .then(response => response.json())
-            .then(productArray => {
-                setAllProduct(productArray.reverse()); // Reverse to show newest items first
+            .then(product => {
+                // Check if the response is a single object
+                if (product && typeof product === "object" && !Array.isArray(product)) {
+                    setAllProduct([product]); // Wrap the object in an array for consistency
+                } else if (Array.isArray(product)) {
+                    setAllProduct(product.reverse()); // Reverse to show newest items first (if API returns an array in the future)
+                } else {
+                    console.error("Unexpected response format:", product);
+                    swal("Error", "Failed to load cart items", "error");
+                }
             })
             .catch(error => {
                 console.error("Error fetching cart items:", error);
@@ -24,7 +33,7 @@ const MyCart = () => {
 
     // Delete a product from the cart
     const deleteCart = (pid) => {
-        let url = `http://localhost:3000/api/cart/${pid}`;
+        let url = `https://alevelproject.onrender.com/api/cart/${pid}`;
         console.log(url);
         fetch(url, { method: "DELETE" })
             .then(response => {
@@ -48,11 +57,7 @@ const MyCart = () => {
 
     // Update quantity of a product in the cart
     const updateQty = async (product, action) => {
-        console.log("Updating product with ID:", product.id); // Log the product ID
-
-        const url = `http://localhost:3000/api/cart/${product.id}`;
-        console.log(url);
-        
+        const url = `https://alevelproject.onrender.com/api/cart/${product.id}`;
         const updatedQty = action === "A" ? product.qty + 1 : product.qty - 1;
 
         if (updatedQty < 1) {
@@ -69,15 +74,13 @@ const MyCart = () => {
                 body: JSON.stringify({ qty: updatedQty }),
             });
 
-            if (response.status === 404) {
-                throw new Error("Product not found");
-            }
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error("Failed to update quantity");
             }
 
-            const updatedProduct = await response.json();
-            setAllProduct(prevProducts => prevProducts.map(p => p.id === product.id ? { ...p, qty: updatedQty } : p));
+            setAllProduct(prevProducts =>
+                prevProducts.map(p => p.id === product.id ? { ...p, qty: updatedQty } : p)
+            );
         } catch (error) {
             console.error("Error updating product:", error);
             swal("Error", "Failed to update quantity", "error");
@@ -92,7 +95,7 @@ const MyCart = () => {
 
     const save = () => {
         let orderData = { fullname, email: emailid, mobile: mobileno, address, itemlist: allProduct };
-        let url = "http://localhost:3000/api/orders/";
+        let url = "https://alevelproject.onrender.com/api/orders/";
 
         fetch(url, {
             method: "POST",
