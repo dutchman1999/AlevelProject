@@ -10,7 +10,7 @@ const UserSignup = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/user/register/', {
+            const response = await fetch('https://tiffinbreak-main-2.onrender.com/user/register/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

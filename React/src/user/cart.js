@@ -3,10 +3,10 @@ import swal from "sweetalert";
 
 const MyCart = () => {
     const [allProduct, setAllProduct] = useState([]);
-
+    const usersId = sessionStorage.getItem("userId");
     // Fetch all cart items
     const getProduct = () => {
-        let url = "http://localhost:3000/api/cart/";
+        let url = `https://tiffinbreak-main-2.onrender.com/api/cart?userId=${usersId}`;
         fetch(url)
             .then(response => response.json())
             .then(productArray => {

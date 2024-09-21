@@ -13,7 +13,7 @@ async function getCartItems() {
 // Retrieve a specific cart item by ID
 async function getCartItemById(itemId) {
   try {
-    const results = await db.query('SELECT * FROM cart WHERE id = ?', [itemId]);
+    const results = await db.query('SELECT * FROM cart WHERE userId = ?', [itemId]);
     return results[0][0]; // Assuming `results[0]` contains an array of items, and we return the first match
   } catch (err) {
     throw err;
