@@ -9,7 +9,7 @@ const ProductList = () => {
     let [allproduct, updateProduct] = useState([]);
 
     const getProduct = () => {
-        let url = "http://localhost:3000/api/items/";
+        let url = "https://alevelproject.onrender.com/api/items/";
         fetch(url)
             .then(response => response.json())
             .then(productArray => {
