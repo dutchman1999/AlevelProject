@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise'); // Use mysql2/promise instead of mysql2
+const mysql = require('mysql2/promise'); 
 
 const db = mysql.createPool({
     host: 'mysql-103e0116-khanvirus125-e4b3.d.aivencloud.com',
