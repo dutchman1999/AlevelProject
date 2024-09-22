@@ -20,7 +20,7 @@ const AdminApp = () =>{
                     <div className="collapse navbar-collapse" id="mynavbar">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item me-4">
-                            <Link className="nav-link active" to="/"> <i className="fa fa-dashboard"></i> Dashboard </Link>
+                            <Link className="nav-link active" to="/adminLogin"> <i className="fa fa-dashboard"></i> Dashboard </Link>
                         </li>
                         <li className="nav-item me-4">
                             <Link className="nav-link active" to="/newproduct"> <i className="fa fa-plus"></i> New Product </Link>
@@ -40,7 +40,7 @@ const AdminApp = () =>{
             </nav> 
 
             <Routes>
-                <Route exact path="/" element={ <MyDashboard/> }/>
+                <Route exact path="/adminLogin" element={ <MyDashboard/> }/>
                 <Route exact path="/newproduct" element={ <NewProduct/> }/>
                 <Route exact path="/productlist" element={ <ProductList/> }/>
                 <Route exact path="/orderlist" element={ <OrderList/> }/>

@@ -2,19 +2,29 @@
 import { useState, useEffect } from "react";
 
 const MyDashboard = () =>{
-    let[allproduct, updateProduct] = useState([]);
+    let [allproduct, updateProduct] = useState([]);
+    let [allOrder, updateOrder] = useState([]);
 
     const getProduct = () =>{
-        let url = "http://localhost:1234/product";
+        let url = "https://alevelproject.onrender.com/api/items";
         fetch(url)
         .then(response=>response.json())
         .then(productArray=>{
             updateProduct(productArray);
         })
     }
+    const getOrder = () =>{
+        let url = "https://alevelproject.onrender.com/api/orders";
+        fetch(url)
+        .then(response=>response.json())
+        .then(productArray=>{
+            updateOrder(productArray);
+        })
+    }
 
     useEffect(()=>{
         getProduct();
+        getOrder();
     }, []);
     return(
         <div className="container mt-5">
@@ -29,7 +39,7 @@ const MyDashboard = () =>{
                 </div>
                 <div className="col-lg-4 text-center">
                     <i className="fa fa-headset fa-4x text-warning"></i>
-                    <h3> Order Received : 100 </h3>
+                    <h3> Order Received : {allOrder.length} </h3>
                 </div>
                 <div className="col-lg-2"></div>
             </div>

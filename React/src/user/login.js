@@ -1,58 +1,67 @@
 
 import { useState } from "react";
 import swal from "sweetalert";
-
+import { useNavigate } from 'react-router-dom';
 const Mylogin = () =>{
-    let[email, pickEmail] = useState("");
-    let[password, pickPassword] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate(); // Correctly using useNavigate
 
-    const gologin = () =>{
-        if( email=="" || password =="" ){
-            swal("Invalid Input", "Empty e-Mail Or Password", "warning");
-        }else{
-            let url = "http://localhost:1234/account?email="+email+"&password="+password;
-            fetch(url)
-            .then(response=>response.json())
-            .then(credentials=>{
-                if (credentials.length > 0) {
-                    localStorage.setItem("sellerid", credentials[0].id);
-                    localStorage.setItem("sellername", credentials[0].fullname);
-                    window.location.reload();
-                } else {
-                    swal("Invalid","Invalid or not exist", "warning");
-                }
-            })
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('https://alevelproject.onrender.com/user/adminLogin/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ phoneNumber, password }),
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                localStorage.setItem('sellerid', data.userId); // Store userId in session storage
+                sessionStorage.setItem('token', data.token); // Store token in session storage
+                alert('Login successful!');
+                navigate('/adminLogin'); // Redirect to home after successful login
+            } else {
+                alert(data.error);
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            alert('Something went wrong. Please try again.');
         }
-    }
+    };
 
-    return(
-        <div className="container mt-4">
-            <div className="row">
-                <div className="col-lg-4"></div>
-                <div className="col-lg-4">
-                    <div className="card border-0 shadow-lg">
-                        <div className="card-header bg-primary text-white"> Login </div>
-                        <div className="card-body">
-                            <div className="mb-3">
-                                <label> e-Mail Id </label>
-                                <input type="email" className="form-control"  onChange={obj=>{pickEmail(obj.target.value)}} />
-                            </div>
-                            <div className="mb-3">
-                                <label> Password </label>
-                                <input type="password" className="form-control" onChange={obj=>{pickPassword(obj.target.value)}} />
-                            </div>
-                        </div>
-                        <div className="card-footer text-center">
-                            <button className="btn btn-danger" onClick={gologin}> 
-                                Login <i className="fa fa-arrow-right"></i> 
-                            </button>
-                        </div>
-                    </div>
+    return (
+        <div className="container">
+            <h2>Login</h2>
+            <form onSubmit={handleLogin}>
+                <div className="mb-3">
+                    <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
+                    <input 
+                        type="tel" 
+                        className="form-control" 
+                        id="phoneNumber" 
+                        value={phoneNumber} 
+                        onChange={(e) => setPhoneNumber(e.target.value)} 
+                        required 
+                    />
                 </div>
-                <div className="col-lg-4"></div>
-            </div>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input 
+                        type="password" 
+                        className="form-control" 
+                        id="password" 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        required 
+                    />
+                </div>
+                <button type="submit" className="btn btn-primary">Login</button>
+            </form>
         </div>
-    )
-}
+    );}
 
 export default Mylogin;

@@ -6,7 +6,7 @@ const OrderList = () => {
   // Function to fetch orders from the API
   const getOrders = async () => {
     try {
-      const response = await fetch('http://localhost:1234/order');
+      const response = await fetch('https://alevelproject.onrender.com/api/orders');
       const orderData = await response.json();
       setOrders(orderData);
     } catch (error) {

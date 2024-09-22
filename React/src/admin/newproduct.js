@@ -82,7 +82,7 @@ const NewProduct = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:3000/api/items/', productData);
+            const response = await axios.post('https://alevelproject.onrender.com/api/items/', productData);
 
             
             if (response.status === 200) {

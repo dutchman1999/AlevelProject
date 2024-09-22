@@ -21,7 +21,8 @@ app.use((err, req, res, next) => {
 // Routes
 // user Routes
 app.use('/user', userRoutes );
-
+// order routes
+app.use('/api', orderRoutes );
 // item routes
 app.use('/api', itemRoutes);
 // cart routes
