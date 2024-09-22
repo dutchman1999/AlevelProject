@@ -3,7 +3,7 @@ import swal from "sweetalert";
 import ReactPaginate from "react-paginate";
 import Slider from "react-slick";
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const MyHome = () => {
@@ -35,28 +35,28 @@ const MyHome = () => {
 
         // Check if user is logged in (token and userId exist)
         if (token && userId) {
-            const cartProduct = { 
-                ...product, 
-                qty: 1, 
+            const cartProduct = {
+                ...product,
+                qty: 1,
                 userId  // Add userId to the product data
             };
 
             fetch("https://alevelproject.onrender.com/api/cart", {
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`  // Pass token in the headers for authorization
                 },
                 method: "POST",
                 body: JSON.stringify(cartProduct)
             })
-            .then(response => response.json())
-            .then(() => {
-                swal(product.name, "Added to Cart Successfully!", "success", { timer: 1500 });
-            })
-            .catch(error => {
-                console.error('Error adding to cart:', error);
-                swal("Error", "Could not add to cart. Please try again.", "error");
-            });
+                .then(response => response.json())
+                .then(() => {
+                    swal(product.name, "Added to Cart Successfully!", "success", { timer: 1500 });
+                })
+                .catch(error => {
+                    console.error('Error adding to cart:', error);
+                    swal("Error", "Could not add to cart. Please try again.", "error");
+                });
         } else {
             // If token or userId is missing, redirect to login page
             swal("Please login!", "You need to log in to add items to your cart.", "warning");
@@ -81,18 +81,18 @@ const MyHome = () => {
                 <div className="col-lg-12 mb-4">
                     <div className="input-group">
                         <label className="input-group-text"> <i className="fa fa-search"></i> </label>
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             className="form-control"
-                            onChange={e => updateKeyword(e.target.value)} 
-                            placeholder="Search...." 
+                            onChange={e => updateKeyword(e.target.value)}
+                            placeholder="Search...."
                         />
                     </div>
                 </div>
                 {allproduct.slice(offset, offset + PER_PAGE)
-                    .filter(product => 
-                        product.name.toLowerCase().includes(keyword.toLowerCase()) || 
-                        product.price.toString().includes(keyword)
+                    .filter(product =>
+                        product.name.toLowerCase().includes(keyword.toLowerCase()) ||
+                        (product.price && product.price.toString().includes(keyword))  // Check if price exists before calling toString()
                     )
                     .map((product, index) => {
                         const images = [product.pic1, product.pic2, product.pic3, product.pic4].filter(Boolean);
@@ -113,7 +113,7 @@ const MyHome = () => {
                                             <img src="default-image-url" height="130" width="100%" alt="Product" />
                                         )}
                                     </div>
-                                    <p className="mt-3 text-danger">Rs.{product.price}</p>
+                                    <p className="mt-3 text-danger">Rs.{product.price || "N/A"}</p>  {/* Handle null/undefined price */}
                                     <p>{product.description}</p>
                                     <p>Offer: Rs.{product.discount} Available: {product.qty}</p>
                                     <p className="text-center">

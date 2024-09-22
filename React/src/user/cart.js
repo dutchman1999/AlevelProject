@@ -11,11 +11,10 @@ const MyCart = () => {
         fetch(url)
             .then(response => response.json())
             .then(product => {
-                // Check if the response is a single object
                 if (product && typeof product === "object" && !Array.isArray(product)) {
                     setAllProduct([product]); // Wrap the object in an array for consistency
                 } else if (Array.isArray(product)) {
-                    setAllProduct(product.reverse()); // Reverse to show newest items first (if API returns an array in the future)
+                    setAllProduct(product.reverse()); // Reverse to show newest items first
                 } else {
                     console.error("Unexpected response format:", product);
                     swal("Error", "Failed to load cart items", "error");
@@ -28,13 +27,14 @@ const MyCart = () => {
     };
 
     useEffect(() => {
-        getProduct();
-    }, []);
+        if (usersId) {
+            getProduct();
+        }
+    }, [usersId]);
 
     // Delete a product from the cart
     const deleteCart = (pid) => {
         let url = `https://alevelproject.onrender.com/api/cart/${pid}`;
-        console.log(url);
         fetch(url, { method: "DELETE" })
             .then(response => {
                 if (response.status === 404) {
@@ -117,6 +117,14 @@ const MyCart = () => {
             swal("Error", "Failed to place order", "error");
         });
     };
+
+    if (!usersId) {
+        return (
+            <div className="container mt-4">
+                <h2 className="text-center">Please log in to view your cart details</h2>
+            </div>
+        );
+    }
 
     return (
         <div className="container mt-4">
