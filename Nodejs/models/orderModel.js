@@ -23,6 +23,34 @@ async function getOrderById(orderId) {
   }
 }
 
+// Create a new order in the database
+async function createOrder(orderData) {
+  const { fullname, email, mobile, address, itemlist } = orderData;
+  const itemListJson = JSON.stringify(itemlist); // Convert itemlist array to JSON
+  const sql = 'INSERT INTO orders (fullname, email, mobile, address, itemlist) VALUES (?, ?, ?, ?, ?)';
+  
+  try {
+    const results = await db.query(sql, [fullname, email, mobile, address, itemListJson]);
+    return { id: results.insertId, ...orderData };
+  } catch (err) {
+    throw err;
+  }
+}
+
+// Update an existing order in the database
+async function updateOrder(orderId, orderData) {
+  const { fullname, email, mobile, address, itemlist } = orderData;
+  const itemListJson = JSON.stringify(itemlist); // Convert itemlist array to JSON
+  const sql = 'UPDATE orders SET fullname = ?, email = ?, mobile = ?, address = ?, itemlist = ? WHERE id = ?';
+
+  try {
+    const results = await db.query(sql, [fullname, email, mobile, address, itemListJson, orderId]);
+    return results.affectedRows > 0 ? { id: orderId, ...orderData } : null;
+  } catch (err) {
+    throw err;
+  }
+}
+
 // Delete an order from the database
 async function deleteOrder(orderId) {
   try {
@@ -36,5 +64,7 @@ async function deleteOrder(orderId) {
 module.exports = {
   getAllOrders,
   getOrderById,
+  createOrder,
+  updateOrder,
   deleteOrder,
 };

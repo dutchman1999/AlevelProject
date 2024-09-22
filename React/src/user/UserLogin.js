@@ -46,7 +46,9 @@ const UserLogin = () => {
                 sessionStorage.setItem('userId', data.userId); // Store userId in session storage
                 sessionStorage.setItem('token', data.token); // Store token in session storage
                 alert('Login successful!');
+                window.location.reload();
                 navigate('/'); // Redirect to home after successful login
+
             } else {
                 alert(data.error);
             }

@@ -96,7 +96,8 @@ const MyCart = () => {
     const save = () => {
         let orderData = { fullname, email: emailid, mobile: mobileno, address, itemlist: allProduct };
         let url = "https://alevelproject.onrender.com/api/orders/";
-
+        console.log(orderData);
+        
         fetch(url, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },

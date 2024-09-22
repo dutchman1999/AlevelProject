@@ -21,6 +21,32 @@ async function getOrderById(req, res) {
   }
 }
 
+// Create a new order
+async function createOrder(req, res) {
+  const { fullname, email, mobile, address, itemlist } = req.body;
+  try {
+    const newOrder = await orderModel.createOrder({ fullname, email, mobile, address, itemlist });
+    res.status(201).json(newOrder);
+  } catch (err) {
+    res.status(500).json({ error: 'Error creating the order.' });
+  }
+}
+
+// Update an order
+async function updateOrder(req, res) {
+  const orderId = req.params.id;
+  const { fullname, email, mobile, address, itemlist } = req.body;
+  try {
+    const updatedOrder = await orderModel.updateOrder(orderId, { fullname, email, mobile, address, itemlist });
+    if (!updatedOrder) {
+      return res.status(404).json({ error: 'Order not found.' });
+    }
+    res.json(updatedOrder);
+  } catch (err) {
+    res.status(500).json({ error: 'Error updating the order.' });
+  }
+}
+
 // Delete an order
 async function deleteOrder(req, res) {
   const orderId = req.params.id;
@@ -38,5 +64,7 @@ async function deleteOrder(req, res) {
 module.exports = {
   getAllOrders,
   getOrderById,
+  createOrder,
+  updateOrder,
   deleteOrder,
 };

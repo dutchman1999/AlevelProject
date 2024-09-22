@@ -24,6 +24,7 @@ const Mylogin = () =>{
                 sessionStorage.setItem('token', data.token); // Store token in session storage
                 alert('Login successful!');
                 navigate('/adminLogin'); // Redirect to home after successful login
+                window.location.reload();
             } else {
                 alert(data.error);
             }
