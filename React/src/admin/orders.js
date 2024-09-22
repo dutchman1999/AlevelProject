@@ -41,13 +41,14 @@ const OrderList = () => {
                   <h5 className="card-title mt-4">Items Ordered</h5>
                   {order.itemlist.map((item) => (
                     <div key={item.id} className="border-bottom pb-3 mb-3">
-                      <h6>{item.pname}</h6>
+                      <h6>{item.name}</h6>
                       <div className="d-flex flex-wrap mb-2">
-                        {item.photo.map((url, index) => (
+                        {/* Display item images */}
+                        {[item.pic1, item.pic2, item.pic3, item.pic4].map((pic, index) => (
                           <img
                             key={index}
-                            src={url}
-                            alt={item.pname}
+                            src={pic}
+                            alt={item.name}
                             height="50"
                             width="60"
                             className="me-2 mb-2"
@@ -55,10 +56,11 @@ const OrderList = () => {
                         ))}
                       </div>
                       <p><strong>Price:</strong> ${item.price}</p>
-                      <p><strong>Details:</strong> {item.details}</p>
-                      <p><strong>Offer:</strong> {item.offer}</p>
+                      <p><strong>Description:</strong> {item.description}</p>
+                      <p><strong>Title:</strong> {item.title}</p>
+                      <p><strong>Discount:</strong> ${item.discount}</p>
                       <p><strong>Quantity:</strong> {item.qty}</p>
-                      <p><strong>Total:</strong> ${item.price * item.qty}</p>
+                      <p><strong>Total:</strong> ${(item.price - item.discount) * item.qty}</p>
                     </div>
                   ))}
                 </div>
