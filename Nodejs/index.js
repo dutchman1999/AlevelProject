@@ -1,13 +1,16 @@
+//index.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // Import the cors middleware
+
+
 const itemRoutes = require('./routes/itemRoutes');
 const userRoutes = require('./routes/userRoutes');
-const app = express();
 const orderRoutes = require('./routes/orderRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 
 // Middleware
+const app = express();
 app.use(cors()); // Use the cors middleware to enable CORS
 app.use(bodyParser.json());
 
@@ -19,9 +22,9 @@ app.use((err, req, res, next) => {
 
 // Routes
 // user Routes
-app.use('/user', userRoutes );
+app.use('/user', userRoutes);
 // order routes
-app.use('/api', orderRoutes );
+app.use('/api', orderRoutes);
 // item routes
 app.use('/api', itemRoutes);
 // cart routes
