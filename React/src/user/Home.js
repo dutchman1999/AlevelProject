@@ -21,9 +21,20 @@ const MyHome = () => {
         fetch("https://alevelproject.onrender.com/api/items")
             .then(response => response.json())
             .then(productArray => {
-                updateProduct(productArray.reverse());
+                console.log('Product Array:', productArray);  // Log the response here
+                if (Array.isArray(productArray)) {
+                    updateProduct(productArray.reverse());
+                } else {
+                    console.error('The response is not an array!');
+                    swal("Error", "Product data is not available. Please try again later.", "error");
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+                swal("Error", "Could not fetch products. Please try again later.", "error");
             });
     };
+    
 
     const handlePageClick = ({ selected: selectedPage }) => {
         setCurrentPage(selectedPage);
